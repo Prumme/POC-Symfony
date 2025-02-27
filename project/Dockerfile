@@ -45,7 +45,6 @@ USER www-data
 ENV APP_ENV=prod
 ENV DATABASE_URL="postgresql://postgres:Aurelien&23@34.105.176.221:5432/tutorial"
 
-RUN docker-php-ext-install pdo pdo_pgsql
 
 # If your project does not have assets, use this instead:
 RUN php bin/console cache:clear --no-warmup && \
