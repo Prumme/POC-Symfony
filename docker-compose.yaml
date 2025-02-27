@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+    # Postgres database container
+    db:
+        image: postgres
+        restart: always
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
+            POSTGRES_DB: tutorial
+        ports:
+            - "5432:5432"
+        networks:
+            - tutorial
+
+    # Adminer container
+    adminer:
+        image: adminer
+        restart: always
+        ports:
+            - "8080:8080"
+        networks:
+            - tutorial
+
+    # Symfony apache project container
+    www:
+        build: docker/php
+        ports:
+          - "8741:80"
+        volumes:
+            - ./docker/php/vhosts:/etc/apache2/sites-enabled
+            - ./:/var/www
+        restart: always
+        networks:
+            - tutorial
+
+networks:
+    tutorial:
+
+volumes:
+    db-data:
