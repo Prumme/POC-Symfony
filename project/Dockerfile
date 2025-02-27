@@ -7,6 +7,8 @@ RUN composer install --no-scripts --no-autoloader \
     && composer dump-autoload --optimize
 
 FROM php:8.3-apache
+ENV APP_ENV=prod
+ENV DATABASE_URL="postgresql://postgres:Aurelien&23@34.105.176.221:5432/tutorial"
 
 # Configure PHP for Cloud Run.
 # Precompile PHP code with opcache.
@@ -40,13 +42,9 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 RUN a2enmod rewrite
 
-USER www-data
-
-ENV APP_ENV=prod
-ENV DATABASE_URL="postgresql://postgres:Aurelien&23@34.105.176.221:5432/tutorial"
-
-
 RUN apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
+
+USER www-data
 # If your project does not have assets, use this instead:
 RUN php bin/console cache:clear --no-warmup && \
     php bin/console cache:warmup
