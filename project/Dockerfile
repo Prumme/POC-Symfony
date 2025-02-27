@@ -44,6 +44,8 @@ USER www-data
 
 ENV APP_ENV=prod
 
+ENV DATABASE_URL="postgresql://root:root@db:5432/tutorial"
+
 # Clear the project cache and compile the assets
 RUN php bin/console cache:clear --no-warmup && \
     php bin/console cache:warmup
