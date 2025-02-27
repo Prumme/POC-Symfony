@@ -42,7 +42,8 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 RUN a2enmod rewrite
 
-RUN apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
+RUN apt-get install -y libpq-dev
+RUN docker-php-ext-install pdo pdo_pgsql
 
 USER www-data
 # If your project does not have assets, use this instead:
