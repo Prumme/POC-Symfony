@@ -28,7 +28,7 @@ RUN set -ex; \
 
 WORKDIR /var/www
 
-COPY ../docker/vhost.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 COPY --from=build /app/vendor /var/www/vendor
 COPY . /var/www/
 
