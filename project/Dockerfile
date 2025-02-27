@@ -43,7 +43,7 @@ RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 RUN a2enmod rewrite
 
 USER root
-RUN apt-update && apt-get install -y libpq-dev
+RUN apt update && apt-get install -y libpq-dev
 RUN docker-php-ext-install pdo pdo_pgsql
 
 USER www-data
