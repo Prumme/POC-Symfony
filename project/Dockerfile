@@ -46,10 +46,7 @@ ENV APP_ENV=prod
 
 # Clear the project cache and compile the assets
 RUN php bin/console cache:clear --no-warmup && \
-    php bin/console cache:warmup && \
-    php bin/console importmap:install && \
-    php bin/console assets:install && \
-    php bin/console asset-map:compile
+    php bin/console cache:warmup
 
 # If your project does not have assets, use this instead:
 # RUN php bin/console cache:clear --no-warmup && \

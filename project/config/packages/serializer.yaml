@@ -1,3 +1,0 @@
-framework:
-    serializer:
-        enable_circular_reference_handler: true
